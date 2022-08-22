@@ -1,7 +1,5 @@
 from json import loads
 from csv import writer
-from time import time
-start_time = time()
 
 # ASCII ID for less memory, from 32-126, skipping 44 (comma)
 # uses much less memory
@@ -27,7 +25,7 @@ sites.writerow(["id", "url", "title"])
 links.writerow(["start", "end"])
 # written in IDs
 
-id = " "
+done, id = 0, " "
 
 with open("TestData.wat", encoding="utf-8") as f:
     # set buffer, skip header
@@ -71,10 +69,10 @@ with open("TestData.wat", encoding="utf-8") as f:
             except:
                 # site does not have HTML Metadata (no title, no links)
                 sites.writerow([url, ""])
+            if done % 1000 == 0:
+                print(str(done) + " sites loaded")
             for i in range(32):
                 f.readline()
     except:
         #file ended
         pass
-
-print("--- %s seconds ---" % (time() - start_time))
