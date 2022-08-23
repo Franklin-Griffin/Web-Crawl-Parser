@@ -1,14 +1,13 @@
 from json import loads
 from csv import writer
-from time import time
 import cython
+
 STARTING_ROW: cython.int
 JUMP: cython.int
 done: cython.int
 i: cython.int
 
 STARTING_ROW, JUMP = 44, 32
-start = time()
 
 # ASCII ID for less memory, from 32-126, skipping 44 (comma)
 # uses much less memory
@@ -39,7 +38,7 @@ done, id = 0, " "
 with open("TestData.wat", encoding="utf-8") as f:
     # set buffer, skip header
     for i in range(STARTING_ROW):
-        f.readline()
+        f.__next__()
 
     try:
         while True:
@@ -90,4 +89,3 @@ with open("TestData.wat", encoding="utf-8") as f:
     except:
         #file ended
         pass
-print(time() - start)
