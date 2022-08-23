@@ -1236,13 +1236,6 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
-/* PyObjectCallNoArg.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
-#else
-#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
-
 /* PyObjectLookupSpecial.proto */
 #if CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PyObject* __Pyx_PyObject_LookupSpecial(PyObject* obj, PyObject* attr_name) {
@@ -1267,6 +1260,13 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_LookupSpecial(PyObject* obj, PyObj
 }
 #else
 #define __Pyx_PyObject_LookupSpecial(o,n) __Pyx_PyObject_GetAttrStr(o,n)
+#endif
+
+/* PyObjectCallNoArg.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
 #endif
 
 /* PyObjectCall2Args.proto */
@@ -1499,7 +1499,6 @@ static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_next[] = "__next__";
 static const char __pyx_k_open[] = "open";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_time[] = "time";
 static const char __pyx_k_Links[] = "Links";
 static const char __pyx_k_Title[] = "Title";
 static const char __pyx_k_curid[] = "curid";
@@ -1598,7 +1597,6 @@ static PyObject *__pyx_kp_s_sites_loaded;
 static PyObject *__pyx_n_s_start;
 static PyObject *__pyx_n_s_swrite;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_time;
 static PyObject *__pyx_n_s_title;
 static PyObject *__pyx_n_s_url;
 static PyObject *__pyx_kp_s_utf_8;
@@ -1623,7 +1621,7 @@ static PyObject *__pyx_tuple__13;
 static PyObject *__pyx_codeobj__7;
 /* Late includes */
 
-/* "parse.pyx":16
+/* "parse.pyx":15
  * # uses much less memory
  * # almost no added time
  * def increment(id):             # <<<<<<<<<<<<<<
@@ -1665,17 +1663,17 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
   __Pyx_RefNannySetupContext("increment", 0);
   __Pyx_INCREF(__pyx_v_id);
 
-  /* "parse.pyx":17
+  /* "parse.pyx":16
  * # almost no added time
  * def increment(id):
  *     for i in range(len(id) - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         x = id[i]
  *         if x != "~":
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_id); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 17, __pyx_L1_error)
-  __pyx_t_2 = PyInt_FromSsize_t((__pyx_t_1 - 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_id); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t((__pyx_t_1 - 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -1686,16 +1684,16 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
   __Pyx_GIVEREF(__pyx_int_neg_1);
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_int_neg_1);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_1 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_1 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 17, __pyx_L1_error)
+    __pyx_t_1 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 17, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 16, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -1703,17 +1701,17 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_1 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 17, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 16, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_1 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 17, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_1); __Pyx_INCREF(__pyx_t_2); __pyx_t_1++; if (unlikely(0 < 0)) __PYX_ERR(0, 16, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_1); __pyx_t_1++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -1723,7 +1721,7 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 17, __pyx_L1_error)
+          else __PYX_ERR(0, 16, __pyx_L1_error)
         }
         break;
       }
@@ -1732,29 +1730,29 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "parse.pyx":18
+    /* "parse.pyx":17
  * def increment(id):
  *     for i in range(len(id) - 1, -1, -1):
  *         x = id[i]             # <<<<<<<<<<<<<<
  *         if x != "~":
  *             return "".join([id[:i], ("-" if x == "+" else chr(ord(x) + 1)), id[i+1:]])
  */
-    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_id, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_id, __pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_x, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "parse.pyx":19
+    /* "parse.pyx":18
  *     for i in range(len(id) - 1, -1, -1):
  *         x = id[i]
  *         if x != "~":             # <<<<<<<<<<<<<<
  *             return "".join([id[:i], ("-" if x == "+" else chr(ord(x) + 1)), id[i+1:]])
  *         id = "".join([id[:i], " ", id[i+1:]])
  */
-    __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v_x, __pyx_kp_s_, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v_x, __pyx_kp_s_, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 18, __pyx_L1_error)
     if (__pyx_t_5) {
 
-      /* "parse.pyx":20
+      /* "parse.pyx":19
  *         x = id[i]
  *         if x != "~":
  *             return "".join([id[:i], ("-" if x == "+" else chr(ord(x) + 1)), id[i+1:]])             # <<<<<<<<<<<<<<
@@ -1762,28 +1760,28 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
  *     # new character
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v_x, __pyx_kp_s__3, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_5 = (__Pyx_PyString_Equals(__pyx_v_x, __pyx_kp_s__3, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 19, __pyx_L1_error)
       if (__pyx_t_5) {
         __Pyx_INCREF(__pyx_kp_s__4);
         __pyx_t_6 = __pyx_kp_s__4;
       } else {
-        __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_x); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 20, __pyx_L1_error)
-        __pyx_t_8 = __Pyx_PyInt_From_long((__pyx_t_7 + 1)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 20, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_x); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 19, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyInt_From_long((__pyx_t_7 + 1)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 19, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_9 = __Pyx_PyObject_CallOneArg(__pyx_builtin_chr, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_CallOneArg(__pyx_builtin_chr, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 19, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_t_6 = __pyx_t_9;
         __pyx_t_9 = 0;
       }
-      __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, &__pyx_t_9, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, &__pyx_t_9, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = PyList_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_9 = PyList_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_GIVEREF(__pyx_t_2);
       PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_2);
@@ -1794,7 +1792,7 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
       __pyx_t_2 = 0;
       __pyx_t_6 = 0;
       __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __pyx_r = __pyx_t_8;
@@ -1802,7 +1800,7 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "parse.pyx":19
+      /* "parse.pyx":18
  *     for i in range(len(id) - 1, -1, -1):
  *         x = id[i]
  *         if x != "~":             # <<<<<<<<<<<<<<
@@ -1811,21 +1809,21 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
  */
     }
 
-    /* "parse.pyx":21
+    /* "parse.pyx":20
  *         if x != "~":
  *             return "".join([id[:i], ("-" if x == "+" else chr(ord(x) + 1)), id[i+1:]])
  *         id = "".join([id[:i], " ", id[i+1:]])             # <<<<<<<<<<<<<<
  *     # new character
  *     return "".join([" ", id])
  */
-    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, &__pyx_t_9, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_id, 0, 0, &__pyx_t_9, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyList_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __pyx_t_9 = PyList_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_GIVEREF(__pyx_t_8);
     PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_8);
@@ -1836,13 +1834,13 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
     PyList_SET_ITEM(__pyx_t_9, 2, __pyx_t_6);
     __pyx_t_8 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF_SET(__pyx_v_id, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "parse.pyx":17
+    /* "parse.pyx":16
  * # almost no added time
  * def increment(id):
  *     for i in range(len(id) - 1, -1, -1):             # <<<<<<<<<<<<<<
@@ -1852,7 +1850,7 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "parse.pyx":23
+  /* "parse.pyx":22
  *         id = "".join([id[:i], " ", id[i+1:]])
  *     # new character
  *     return "".join([" ", id])             # <<<<<<<<<<<<<<
@@ -1860,7 +1858,7 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
  * sites = writer(open("sites.csv", "w"))
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_kp_s__5);
   __Pyx_GIVEREF(__pyx_kp_s__5);
@@ -1868,14 +1866,14 @@ static PyObject *__pyx_pf_5parse_increment(CYTHON_UNUSED PyObject *__pyx_self, P
   __Pyx_INCREF(__pyx_v_id);
   __Pyx_GIVEREF(__pyx_v_id);
   PyList_SET_ITEM(__pyx_t_3, 1, __pyx_v_id);
-  __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_6;
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "parse.pyx":16
+  /* "parse.pyx":15
  * # uses much less memory
  * # almost no added time
  * def increment(id):             # <<<<<<<<<<<<<<
@@ -2008,7 +2006,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_start, __pyx_k_start, sizeof(__pyx_k_start), 0, 0, 1, 1},
   {&__pyx_n_s_swrite, __pyx_k_swrite, sizeof(__pyx_k_swrite), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_time, __pyx_k_time, sizeof(__pyx_k_time), 0, 0, 1, 1},
   {&__pyx_n_s_title, __pyx_k_title, sizeof(__pyx_k_title), 0, 0, 1, 1},
   {&__pyx_n_s_url, __pyx_k_url, sizeof(__pyx_k_url), 0, 0, 1, 1},
   {&__pyx_kp_s_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 0, 1, 0},
@@ -2020,9 +2017,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 25, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 41, __pyx_L1_error)
-  __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) __PYX_ERR(0, 19, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2032,70 +2029,70 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "parse.pyx":16
+  /* "parse.pyx":15
  * # uses much less memory
  * # almost no added time
  * def increment(id):             # <<<<<<<<<<<<<<
  *     for i in range(len(id) - 1, -1, -1):
  *         x = id[i]
  */
-  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_n_s_id, __pyx_n_s_i, __pyx_n_s_x); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_n_s_id, __pyx_n_s_i, __pyx_n_s_x); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_parse_pyx, __pyx_n_s_increment, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_parse_pyx, __pyx_n_s_increment, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 15, __pyx_L1_error)
 
-  /* "parse.pyx":25
+  /* "parse.pyx":24
  *     return "".join([" ", id])
  * 
  * sites = writer(open("sites.csv", "w"))             # <<<<<<<<<<<<<<
  * links = writer(open("links.csv", "w"))
  * 
  */
-  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_kp_s_sites_csv, __pyx_n_s_w); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_kp_s_sites_csv, __pyx_n_s_w); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "parse.pyx":26
+  /* "parse.pyx":25
  * 
  * sites = writer(open("sites.csv", "w"))
  * links = writer(open("links.csv", "w"))             # <<<<<<<<<<<<<<
  * 
  * # headers
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_kp_s_links_csv, __pyx_n_s_w); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_kp_s_links_csv, __pyx_n_s_w); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "parse.pyx":39
+  /* "parse.pyx":38
  * done, id = 0, " "
  * 
  * with open("TestData.wat", encoding="utf-8") as f:             # <<<<<<<<<<<<<<
  *     # set buffer, skip header
  *     for i in range(STARTING_ROW):
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_TestData_wat); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_TestData_wat); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "parse.pyx":74
+  /* "parse.pyx":73
  *                     elif l[0] == "/":
  *                         # a directory (ie /images)
  *                         swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)             # <<<<<<<<<<<<<<
  *                         lwrite.append([curid, id])
  *                         id = increment(id)
  */
-  __pyx_slice__12 = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice__12)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_slice__12 = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice__12)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__12);
   __Pyx_GIVEREF(__pyx_slice__12);
 
-  /* "parse.pyx":39
+  /* "parse.pyx":38
  * done, id = 0, " "
  * 
  * with open("TestData.wat", encoding="utf-8") as f:             # <<<<<<<<<<<<<<
  *     # set buffer, skip header
  *     for i in range(STARTING_ROW):
  */
-  __pyx_tuple__13 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
   __Pyx_RefNannyFinishContext();
@@ -2406,7 +2403,7 @@ if (!__Pyx_RefNanny) {
   /* "parse.pyx":1
  * from json import loads             # <<<<<<<<<<<<<<
  * from csv import writer
- * from time import time
+ * import cython
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2425,8 +2422,8 @@ if (!__Pyx_RefNanny) {
   /* "parse.pyx":2
  * from json import loads
  * from csv import writer             # <<<<<<<<<<<<<<
- * from time import time
  * import cython
+ * 
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2442,119 +2439,83 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "parse.pyx":3
- * from json import loads
- * from csv import writer
- * from time import time             # <<<<<<<<<<<<<<
- * import cython
- * STARTING_ROW: cython.int
- */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_s_time);
-  __Pyx_GIVEREF(__pyx_n_s_time);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_time);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_time, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_time, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
   /* "parse.pyx":10
  * i: cython.int
  * 
  * STARTING_ROW, JUMP = 44, 32             # <<<<<<<<<<<<<<
- * start = time()
- * 
- */
-  __pyx_t_2 = __pyx_int_44;
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_int_32;
-  __Pyx_INCREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STARTING_ROW, __pyx_t_2) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_JUMP, __pyx_t_1) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "parse.pyx":11
- * 
- * STARTING_ROW, JUMP = 44, 32
- * start = time()             # <<<<<<<<<<<<<<
  * 
  * # ASCII ID for less memory, from 32-126, skipping 44 (comma)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __pyx_int_44;
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_2 = __pyx_int_32;
+  __Pyx_INCREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STARTING_ROW, __pyx_t_1) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_start, __pyx_t_2) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_JUMP, __pyx_t_2) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "parse.pyx":16
+  /* "parse.pyx":15
  * # uses much less memory
  * # almost no added time
  * def increment(id):             # <<<<<<<<<<<<<<
  *     for i in range(len(id) - 1, -1, -1):
  *         x = id[i]
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_5parse_1increment, NULL, __pyx_n_s_parse); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_5parse_1increment, NULL, __pyx_n_s_parse); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_increment, __pyx_t_2) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_increment, __pyx_t_2) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "parse.pyx":25
+  /* "parse.pyx":24
  *     return "".join([" ", id])
  * 
  * sites = writer(open("sites.csv", "w"))             # <<<<<<<<<<<<<<
  * links = writer(open("links.csv", "w"))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_writer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_writer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sites, __pyx_t_3) < 0) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_sites, __pyx_t_3) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "parse.pyx":26
+  /* "parse.pyx":25
  * 
  * sites = writer(open("sites.csv", "w"))
  * links = writer(open("links.csv", "w"))             # <<<<<<<<<<<<<<
  * 
  * # headers
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_writer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_writer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_links, __pyx_t_2) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_links, __pyx_t_2) < 0) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "parse.pyx":30
+  /* "parse.pyx":29
  * # headers
  * 
  * sites.writerow(["id", "url", "title"])             # <<<<<<<<<<<<<<
  * # if a title is not known, it will be an empty string
  * # in the search engine, the url can be used, but doing that here takes much more space
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sites); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_writerow); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_writerow); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_id);
   __Pyx_GIVEREF(__pyx_n_s_id);
@@ -2565,25 +2526,25 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_title);
   __Pyx_GIVEREF(__pyx_n_s_title);
   PyList_SET_ITEM(__pyx_t_2, 2, __pyx_n_s_title);
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "parse.pyx":34
+  /* "parse.pyx":33
  * # in the search engine, the url can be used, but doing that here takes much more space
  * 
  * links.writerow(["start", "end"])             # <<<<<<<<<<<<<<
  * # written in IDs
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_links); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_links); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_writerow); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_writerow); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_n_s_start);
   __Pyx_GIVEREF(__pyx_n_s_start);
@@ -2591,13 +2552,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_end);
   __Pyx_GIVEREF(__pyx_n_s_end);
   PyList_SET_ITEM(__pyx_t_3, 1, __pyx_n_s_end);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "parse.pyx":37
+  /* "parse.pyx":36
  * # written in IDs
  * 
  * done, id = 0, " "             # <<<<<<<<<<<<<<
@@ -2608,12 +2569,12 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_t_1);
   __pyx_t_3 = __pyx_kp_s__5;
   __Pyx_INCREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_done, __pyx_t_1) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_done, __pyx_t_1) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_3) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_3) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "parse.pyx":39
+  /* "parse.pyx":38
  * done, id = 0, " "
  * 
  * with open("TestData.wat", encoding="utf-8") as f:             # <<<<<<<<<<<<<<
@@ -2621,17 +2582,17 @@ if (!__Pyx_RefNanny) {
  *     for i in range(STARTING_ROW):
  */
   /*with:*/ {
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__10, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_tuple__10, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L2_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L2_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L2_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L2_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = __pyx_t_2;
@@ -2646,28 +2607,28 @@ if (!__Pyx_RefNanny) {
         __Pyx_XGOTREF(__pyx_t_6);
         __Pyx_XGOTREF(__pyx_t_7);
         /*try:*/ {
-          if (PyDict_SetItem(__pyx_d, __pyx_n_s_f, __pyx_t_3) < 0) __PYX_ERR(0, 39, __pyx_L6_error)
+          if (PyDict_SetItem(__pyx_d, __pyx_n_s_f, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L6_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "parse.pyx":41
+          /* "parse.pyx":40
  * with open("TestData.wat", encoding="utf-8") as f:
  *     # set buffer, skip header
  *     for i in range(STARTING_ROW):             # <<<<<<<<<<<<<<
- *         f.readline()
+ *         f.__next__()
  * 
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_STARTING_ROW); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L6_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_STARTING_ROW); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L6_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
             __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_8 = 0;
             __pyx_t_9 = NULL;
           } else {
-            __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L6_error)
+            __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 41, __pyx_L6_error)
+            __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 40, __pyx_L6_error)
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           for (;;) {
@@ -2675,17 +2636,17 @@ if (!__Pyx_RefNanny) {
               if (likely(PyList_CheckExact(__pyx_t_3))) {
                 if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_3)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 41, __pyx_L6_error)
+                __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 40, __pyx_L6_error)
                 #else
-                __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L6_error)
+                __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L6_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 #endif
               } else {
                 if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 41, __pyx_L6_error)
+                __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 40, __pyx_L6_error)
                 #else
-                __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L6_error)
+                __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L6_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 #endif
               }
@@ -2695,25 +2656,25 @@ if (!__Pyx_RefNanny) {
                 PyObject* exc_type = PyErr_Occurred();
                 if (exc_type) {
                   if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                  else __PYX_ERR(0, 41, __pyx_L6_error)
+                  else __PYX_ERR(0, 40, __pyx_L6_error)
                 }
                 break;
               }
               __Pyx_GOTREF(__pyx_t_1);
             }
-            if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, __pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L6_error)
+            if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, __pyx_t_1) < 0) __PYX_ERR(0, 40, __pyx_L6_error)
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "parse.pyx":42
+            /* "parse.pyx":41
  *     # set buffer, skip header
  *     for i in range(STARTING_ROW):
- *         f.readline()             # <<<<<<<<<<<<<<
+ *         f.__next__()             # <<<<<<<<<<<<<<
  * 
  *     try:
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_f); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L6_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_f); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_readline); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 42, __pyx_L6_error)
+            __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_next); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 41, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_10);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
             __pyx_t_2 = NULL;
@@ -2728,23 +2689,23 @@ if (!__Pyx_RefNanny) {
             }
             __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_10);
             __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L6_error)
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "parse.pyx":41
+            /* "parse.pyx":40
  * with open("TestData.wat", encoding="utf-8") as f:
  *     # set buffer, skip header
  *     for i in range(STARTING_ROW):             # <<<<<<<<<<<<<<
- *         f.readline()
+ *         f.__next__()
  * 
  */
           }
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "parse.pyx":44
- *         f.readline()
+          /* "parse.pyx":43
+ *         f.__next__()
  * 
  *     try:             # <<<<<<<<<<<<<<
  *         while True:
@@ -2759,7 +2720,7 @@ if (!__Pyx_RefNanny) {
             __Pyx_XGOTREF(__pyx_t_13);
             /*try:*/ {
 
-              /* "parse.pyx":45
+              /* "parse.pyx":44
  * 
  *     try:
  *         while True:             # <<<<<<<<<<<<<<
@@ -2768,18 +2729,18 @@ if (!__Pyx_RefNanny) {
  */
               while (1) {
 
-                /* "parse.pyx":46
+                /* "parse.pyx":45
  *     try:
  *         while True:
  *             data = loads(f.readline())['Envelope']             # <<<<<<<<<<<<<<
  *             url = data['WARC-Header-Metadata']['WARC-Target-URI']
  *             curid = id
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_loads); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_loads); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_f); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_f); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_2);
-                __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_readline); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 46, __pyx_L14_error)
+                __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_readline); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_14);
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 __pyx_t_2 = NULL;
@@ -2794,7 +2755,7 @@ if (!__Pyx_RefNanny) {
                 }
                 __pyx_t_10 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_14, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_14);
                 __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 46, __pyx_L14_error)
+                if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_10);
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __pyx_t_14 = NULL;
@@ -2810,55 +2771,55 @@ if (!__Pyx_RefNanny) {
                 __pyx_t_3 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_14, __pyx_t_10) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_10);
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L14_error)
+                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_Envelope); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L14_error)
+                __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_Envelope); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                if (PyDict_SetItem(__pyx_d, __pyx_n_s_data, __pyx_t_1) < 0) __PYX_ERR(0, 46, __pyx_L14_error)
+                if (PyDict_SetItem(__pyx_d, __pyx_n_s_data, __pyx_t_1) < 0) __PYX_ERR(0, 45, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                /* "parse.pyx":47
+                /* "parse.pyx":46
  *         while True:
  *             data = loads(f.readline())['Envelope']
  *             url = data['WARC-Header-Metadata']['WARC-Target-URI']             # <<<<<<<<<<<<<<
  *             curid = id
  *             id = increment(id)
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_WARC_Header_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L14_error)
+                __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_WARC_Header_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_WARC_Target_URI); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L14_error)
+                __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_WARC_Target_URI); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                if (PyDict_SetItem(__pyx_d, __pyx_n_s_url, __pyx_t_1) < 0) __PYX_ERR(0, 47, __pyx_L14_error)
+                if (PyDict_SetItem(__pyx_d, __pyx_n_s_url, __pyx_t_1) < 0) __PYX_ERR(0, 46, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                /* "parse.pyx":48
+                /* "parse.pyx":47
  *             data = loads(f.readline())['Envelope']
  *             url = data['WARC-Header-Metadata']['WARC-Target-URI']
  *             curid = id             # <<<<<<<<<<<<<<
  *             id = increment(id)
  *             try:
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                if (PyDict_SetItem(__pyx_d, __pyx_n_s_curid, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L14_error)
+                if (PyDict_SetItem(__pyx_d, __pyx_n_s_curid, __pyx_t_1) < 0) __PYX_ERR(0, 47, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                /* "parse.pyx":49
+                /* "parse.pyx":48
  *             url = data['WARC-Header-Metadata']['WARC-Target-URI']
  *             curid = id
  *             id = increment(id)             # <<<<<<<<<<<<<<
  *             try:
  *                 title = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Head']['Title']
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_increment); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_increment); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_id); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_id); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 48, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_10);
                 __pyx_t_14 = NULL;
                 if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2873,13 +2834,13 @@ if (!__Pyx_RefNanny) {
                 __pyx_t_1 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_14, __pyx_t_10) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_10);
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                 __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-                if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L14_error)
+                if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_1) < 0) __PYX_ERR(0, 49, __pyx_L14_error)
+                if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                /* "parse.pyx":50
+                /* "parse.pyx":49
  *             curid = id
  *             id = increment(id)
  *             try:             # <<<<<<<<<<<<<<
@@ -2895,76 +2856,76 @@ if (!__Pyx_RefNanny) {
                   __Pyx_XGOTREF(__pyx_t_17);
                   /*try:*/ {
 
-                    /* "parse.pyx":51
+                    /* "parse.pyx":50
  *             id = increment(id)
  *             try:
  *                 title = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Head']['Title']             # <<<<<<<<<<<<<<
  *                 linkbook = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Links']
  *                 sites.writerow([id, url, title])
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_Payload_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
+                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_Payload_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_HTTP_Response_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_HTML_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_3);
-                    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_Head); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_HTTP_Response_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_Title); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
+                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_HTML_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_title, __pyx_t_3) < 0) __PYX_ERR(0, 51, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_Head); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L22_error)
+                    __Pyx_GOTREF(__pyx_t_1);
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_Title); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L22_error)
+                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_title, __pyx_t_3) < 0) __PYX_ERR(0, 50, __pyx_L22_error)
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":52
+                    /* "parse.pyx":51
  *             try:
  *                 title = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Head']['Title']
  *                 linkbook = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Links']             # <<<<<<<<<<<<<<
  *                 sites.writerow([id, url, title])
  *                 id = increment(id)
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
-                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_Payload_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_Payload_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_HTTP_Response_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L22_error)
+                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_kp_s_HTTP_Response_Metadata); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_HTML_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_kp_s_HTML_Metadata); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_Links); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L22_error)
+                    __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_n_s_Links); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_linkbook, __pyx_t_3) < 0) __PYX_ERR(0, 52, __pyx_L22_error)
+                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_linkbook, __pyx_t_3) < 0) __PYX_ERR(0, 51, __pyx_L22_error)
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":53
+                    /* "parse.pyx":52
  *                 title = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Head']['Title']
  *                 linkbook = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Links']
  *                 sites.writerow([id, url, title])             # <<<<<<<<<<<<<<
  *                 id = increment(id)
  *                 swrite = []
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sites); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_writerow); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_writerow); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_10);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_id); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_url); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_url); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_14);
-                    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_title); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_title); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_2);
-                    __pyx_t_18 = PyList_New(3); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    __pyx_t_18 = PyList_New(3); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_18);
                     __Pyx_GIVEREF(__pyx_t_1);
                     PyList_SET_ITEM(__pyx_t_18, 0, __pyx_t_1);
@@ -2988,21 +2949,21 @@ if (!__Pyx_RefNanny) {
                     __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_2, __pyx_t_18) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_18);
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L22_error)
+                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":54
+                    /* "parse.pyx":53
  *                 linkbook = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Links']
  *                 sites.writerow([id, url, title])
  *                 id = increment(id)             # <<<<<<<<<<<<<<
  *                 swrite = []
  *                 lwrite = []
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_increment); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 54, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_increment); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 53, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_10);
-                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 54, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 53, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_18);
                     __pyx_t_2 = NULL;
                     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_10))) {
@@ -3017,52 +2978,52 @@ if (!__Pyx_RefNanny) {
                     __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_2, __pyx_t_18) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_18);
                     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L22_error)
+                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_3) < 0) __PYX_ERR(0, 54, __pyx_L22_error)
+                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_3) < 0) __PYX_ERR(0, 53, __pyx_L22_error)
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":55
+                    /* "parse.pyx":54
  *                 sites.writerow([id, url, title])
  *                 id = increment(id)
  *                 swrite = []             # <<<<<<<<<<<<<<
  *                 lwrite = []
  *                 for link in linkbook:
  */
-                    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L22_error)
+                    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
-                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_swrite, __pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L22_error)
+                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_swrite, __pyx_t_3) < 0) __PYX_ERR(0, 54, __pyx_L22_error)
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":56
+                    /* "parse.pyx":55
  *                 id = increment(id)
  *                 swrite = []
  *                 lwrite = []             # <<<<<<<<<<<<<<
  *                 for link in linkbook:
  *                     l = "" # the link
  */
-                    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L22_error)
+                    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
-                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_lwrite, __pyx_t_3) < 0) __PYX_ERR(0, 56, __pyx_L22_error)
+                    if (PyDict_SetItem(__pyx_d, __pyx_n_s_lwrite, __pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L22_error)
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                    /* "parse.pyx":57
+                    /* "parse.pyx":56
  *                 swrite = []
  *                 lwrite = []
  *                 for link in linkbook:             # <<<<<<<<<<<<<<
  *                     l = "" # the link
  *                     if "url" in link:
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_linkbook); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_linkbook); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
                       __pyx_t_10 = __pyx_t_3; __Pyx_INCREF(__pyx_t_10); __pyx_t_8 = 0;
                       __pyx_t_9 = NULL;
                     } else {
-                      __pyx_t_8 = -1; __pyx_t_10 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 57, __pyx_L22_error)
+                      __pyx_t_8 = -1; __pyx_t_10 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 56, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_10);
-                      __pyx_t_9 = Py_TYPE(__pyx_t_10)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 57, __pyx_L22_error)
+                      __pyx_t_9 = Py_TYPE(__pyx_t_10)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 56, __pyx_L22_error)
                     }
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                     for (;;) {
@@ -3070,17 +3031,17 @@ if (!__Pyx_RefNanny) {
                         if (likely(PyList_CheckExact(__pyx_t_10))) {
                           if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_10)) break;
                           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_10, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 57, __pyx_L22_error)
+                          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_10, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 56, __pyx_L22_error)
                           #else
-                          __pyx_t_3 = PySequence_ITEM(__pyx_t_10, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L22_error)
+                          __pyx_t_3 = PySequence_ITEM(__pyx_t_10, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L22_error)
                           __Pyx_GOTREF(__pyx_t_3);
                           #endif
                         } else {
                           if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_10)) break;
                           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_10, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 57, __pyx_L22_error)
+                          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_10, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 56, __pyx_L22_error)
                           #else
-                          __pyx_t_3 = PySequence_ITEM(__pyx_t_10, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L22_error)
+                          __pyx_t_3 = PySequence_ITEM(__pyx_t_10, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L22_error)
                           __Pyx_GOTREF(__pyx_t_3);
                           #endif
                         }
@@ -3090,54 +3051,54 @@ if (!__Pyx_RefNanny) {
                           PyObject* exc_type = PyErr_Occurred();
                           if (exc_type) {
                             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                            else __PYX_ERR(0, 57, __pyx_L22_error)
+                            else __PYX_ERR(0, 56, __pyx_L22_error)
                           }
                           break;
                         }
                         __Pyx_GOTREF(__pyx_t_3);
                       }
-                      if (PyDict_SetItem(__pyx_d, __pyx_n_s_link, __pyx_t_3) < 0) __PYX_ERR(0, 57, __pyx_L22_error)
+                      if (PyDict_SetItem(__pyx_d, __pyx_n_s_link, __pyx_t_3) < 0) __PYX_ERR(0, 56, __pyx_L22_error)
                       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                      /* "parse.pyx":58
+                      /* "parse.pyx":57
  *                 lwrite = []
  *                 for link in linkbook:
  *                     l = "" # the link             # <<<<<<<<<<<<<<
  *                     if "url" in link:
  *                         l = link["url"]
  */
-                      if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_kp_s__2) < 0) __PYX_ERR(0, 58, __pyx_L22_error)
+                      if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_kp_s__2) < 0) __PYX_ERR(0, 57, __pyx_L22_error)
 
-                      /* "parse.pyx":59
+                      /* "parse.pyx":58
  *                 for link in linkbook:
  *                     l = "" # the link
  *                     if "url" in link:             # <<<<<<<<<<<<<<
  *                         l = link["url"]
  *                     elif link:
  */
-                      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_link); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L22_error)
+                      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_link); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_3);
-                      __pyx_t_19 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_url, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 59, __pyx_L22_error)
+                      __pyx_t_19 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_url, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 58, __pyx_L22_error)
                       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                       __pyx_t_20 = (__pyx_t_19 != 0);
                       if (__pyx_t_20) {
 
-                        /* "parse.pyx":60
+                        /* "parse.pyx":59
  *                     l = "" # the link
  *                     if "url" in link:
  *                         l = link["url"]             # <<<<<<<<<<<<<<
  *                     elif link:
  *                         # links always include "href" or "url" unless they are empty
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_link); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_link); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __pyx_t_18 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_url); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 60, __pyx_L22_error)
+                        __pyx_t_18 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_n_s_url); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 59, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
                         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_t_18) < 0) __PYX_ERR(0, 60, __pyx_L22_error)
+                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_t_18) < 0) __PYX_ERR(0, 59, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                        /* "parse.pyx":59
+                        /* "parse.pyx":58
  *                 for link in linkbook:
  *                     l = "" # the link
  *                     if "url" in link:             # <<<<<<<<<<<<<<
@@ -3147,35 +3108,35 @@ if (!__Pyx_RefNanny) {
                         goto __pyx_L32;
                       }
 
-                      /* "parse.pyx":61
+                      /* "parse.pyx":60
  *                     if "url" in link:
  *                         l = link["url"]
  *                     elif link:             # <<<<<<<<<<<<<<
  *                         # links always include "href" or "url" unless they are empty
  *                         l = link["href"]
  */
-                      __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_link); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 61, __pyx_L22_error)
+                      __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_link); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 60, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_18);
-                      __pyx_t_20 = __Pyx_PyObject_IsTrue(__pyx_t_18); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 61, __pyx_L22_error)
+                      __pyx_t_20 = __Pyx_PyObject_IsTrue(__pyx_t_18); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 60, __pyx_L22_error)
                       __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
                       if (__pyx_t_20) {
 
-                        /* "parse.pyx":63
+                        /* "parse.pyx":62
  *                     elif link:
  *                         # links always include "href" or "url" unless they are empty
  *                         l = link["href"]             # <<<<<<<<<<<<<<
  * 
  *                     if "http" in l:
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_link); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 63, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_link); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 62, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
-                        __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_18, __pyx_n_s_href); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L22_error)
+                        __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_t_18, __pyx_n_s_href); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_t_3) < 0) __PYX_ERR(0, 63, __pyx_L22_error)
+                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_l, __pyx_t_3) < 0) __PYX_ERR(0, 62, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                        /* "parse.pyx":61
+                        /* "parse.pyx":60
  *                     if "url" in link:
  *                         l = link["url"]
  *                     elif link:             # <<<<<<<<<<<<<<
@@ -3185,34 +3146,34 @@ if (!__Pyx_RefNanny) {
                       }
                       __pyx_L32:;
 
-                      /* "parse.pyx":65
+                      /* "parse.pyx":64
  *                         l = link["href"]
  * 
  *                     if "http" in l:             # <<<<<<<<<<<<<<
  *                         # this is a link to a site or image
  *                         # we need to make sure it gets included
  */
-                      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L22_error)
+                      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_3);
-                      __pyx_t_20 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_http, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 65, __pyx_L22_error)
+                      __pyx_t_20 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_http, __pyx_t_3, Py_EQ)); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 64, __pyx_L22_error)
                       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                       __pyx_t_19 = (__pyx_t_20 != 0);
                       if (__pyx_t_19) {
 
-                        /* "parse.pyx":69
+                        /* "parse.pyx":68
  *                         # we need to make sure it gets included
  *                         # if it is a duplicate, that's ok, it'll get filtered
  *                         swrite.append([id, l, ""])             # <<<<<<<<<<<<<<
  *                         lwrite.append([curid, id])
  *                         id = increment(id)
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_swrite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_swrite); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 69, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 68, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
-                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_l); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_l); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_2);
-                        __pyx_t_14 = PyList_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 69, __pyx_L22_error)
+                        __pyx_t_14 = PyList_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 68, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_14);
                         __Pyx_GIVEREF(__pyx_t_18);
                         PyList_SET_ITEM(__pyx_t_14, 0, __pyx_t_18);
@@ -3223,24 +3184,24 @@ if (!__Pyx_RefNanny) {
                         PyList_SET_ITEM(__pyx_t_14, 2, __pyx_kp_s__2);
                         __pyx_t_18 = 0;
                         __pyx_t_2 = 0;
-                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_t_14); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L22_error)
+                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_t_14); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 68, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-                        /* "parse.pyx":70
+                        /* "parse.pyx":69
  *                         # if it is a duplicate, that's ok, it'll get filtered
  *                         swrite.append([id, l, ""])
  *                         lwrite.append([curid, id])             # <<<<<<<<<<<<<<
  *                         id = increment(id)
  *                     elif l[0] == "/":
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 70, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 69, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_14);
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_curid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_curid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_2);
-                        __pyx_t_18 = PyList_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 70, __pyx_L22_error)
+                        __pyx_t_18 = PyList_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 69, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
                         __Pyx_GIVEREF(__pyx_t_3);
                         PyList_SET_ITEM(__pyx_t_18, 0, __pyx_t_3);
@@ -3248,20 +3209,20 @@ if (!__Pyx_RefNanny) {
                         PyList_SET_ITEM(__pyx_t_18, 1, __pyx_t_2);
                         __pyx_t_3 = 0;
                         __pyx_t_2 = 0;
-                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_14, __pyx_t_18); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 70, __pyx_L22_error)
+                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_14, __pyx_t_18); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                        /* "parse.pyx":71
+                        /* "parse.pyx":70
  *                         swrite.append([id, l, ""])
  *                         lwrite.append([curid, id])
  *                         id = increment(id)             # <<<<<<<<<<<<<<
  *                     elif l[0] == "/":
  *                         # a directory (ie /images)
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_increment); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 71, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_increment); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 70, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_14);
-                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_id); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_2);
                         __pyx_t_3 = NULL;
                         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_14))) {
@@ -3276,13 +3237,13 @@ if (!__Pyx_RefNanny) {
                         __pyx_t_18 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_14, __pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_14, __pyx_t_2);
                         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                        if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 71, __pyx_L22_error)
+                        if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 70, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
                         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_18) < 0) __PYX_ERR(0, 71, __pyx_L22_error)
+                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_18) < 0) __PYX_ERR(0, 70, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                        /* "parse.pyx":65
+                        /* "parse.pyx":64
  *                         l = link["href"]
  * 
  *                     if "http" in l:             # <<<<<<<<<<<<<<
@@ -3292,57 +3253,57 @@ if (!__Pyx_RefNanny) {
                         goto __pyx_L33;
                       }
 
-                      /* "parse.pyx":72
+                      /* "parse.pyx":71
  *                         lwrite.append([curid, id])
  *                         id = increment(id)
  *                     elif l[0] == "/":             # <<<<<<<<<<<<<<
  *                         # a directory (ie /images)
  *                         swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)
  */
-                      __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_l); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 72, __pyx_L22_error)
+                      __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_l); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 71, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_18);
-                      __pyx_t_14 = __Pyx_GetItemInt(__pyx_t_18, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 72, __pyx_L22_error)
+                      __pyx_t_14 = __Pyx_GetItemInt(__pyx_t_18, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 71, __pyx_L22_error)
                       __Pyx_GOTREF(__pyx_t_14);
                       __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                      __pyx_t_19 = (__Pyx_PyString_Equals(__pyx_t_14, __pyx_kp_s__11, Py_EQ)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 72, __pyx_L22_error)
+                      __pyx_t_19 = (__Pyx_PyString_Equals(__pyx_t_14, __pyx_kp_s__11, Py_EQ)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 71, __pyx_L22_error)
                       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                       if (__pyx_t_19) {
 
-                        /* "parse.pyx":74
+                        /* "parse.pyx":73
  *                     elif l[0] == "/":
  *                         # a directory (ie /images)
  *                         swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)             # <<<<<<<<<<<<<<
  *                         lwrite.append([curid, id])
  *                         id = increment(id)
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_swrite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_swrite); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_14);
-                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_id); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_url); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_url); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_3, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_3, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_1);
                         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                        __pyx_t_19 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_kp_s__11, Py_NE)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_19 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_kp_s__11, Py_NE)); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                         if (__pyx_t_19) {
-                          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_url); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
+                          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_url); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L22_error)
                           __Pyx_GOTREF(__pyx_t_1);
                           __pyx_t_2 = __pyx_t_1;
                           __pyx_t_1 = 0;
                         } else {
-                          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_url); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
+                          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_url); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L22_error)
                           __Pyx_GOTREF(__pyx_t_1);
-                          __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, -1L, NULL, NULL, &__pyx_slice__12, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L22_error)
+                          __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, -1L, NULL, NULL, &__pyx_slice__12, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L22_error)
                           __Pyx_GOTREF(__pyx_t_3);
                           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                           __pyx_t_2 = __pyx_t_3;
                           __pyx_t_3 = 0;
                         }
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_1);
                         __Pyx_GIVEREF(__pyx_t_2);
                         PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -3350,10 +3311,10 @@ if (!__Pyx_RefNanny) {
                         PyList_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
                         __pyx_t_2 = 0;
                         __pyx_t_3 = 0;
-                        __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
                         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                        __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_1);
                         __Pyx_GIVEREF(__pyx_t_18);
                         PyList_SET_ITEM(__pyx_t_1, 0, __pyx_t_18);
@@ -3364,24 +3325,24 @@ if (!__Pyx_RefNanny) {
                         PyList_SET_ITEM(__pyx_t_1, 2, __pyx_kp_s__2);
                         __pyx_t_18 = 0;
                         __pyx_t_3 = 0;
-                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_14, __pyx_t_1); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L22_error)
+                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_14, __pyx_t_1); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 73, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
                         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                        /* "parse.pyx":75
+                        /* "parse.pyx":74
  *                         # a directory (ie /images)
  *                         swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)
  *                         lwrite.append([curid, id])             # <<<<<<<<<<<<<<
  *                         id = increment(id)
  *                     # Anything else is somehting like javascript or php,
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_1);
-                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_curid); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 75, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_curid); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 74, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_14);
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
-                        __pyx_t_18 = PyList_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 75, __pyx_L22_error)
+                        __pyx_t_18 = PyList_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 74, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
                         __Pyx_GIVEREF(__pyx_t_14);
                         PyList_SET_ITEM(__pyx_t_18, 0, __pyx_t_14);
@@ -3389,20 +3350,20 @@ if (!__Pyx_RefNanny) {
                         PyList_SET_ITEM(__pyx_t_18, 1, __pyx_t_3);
                         __pyx_t_14 = 0;
                         __pyx_t_3 = 0;
-                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_18); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 75, __pyx_L22_error)
+                        __pyx_t_21 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_t_18); if (unlikely(__pyx_t_21 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                        /* "parse.pyx":76
+                        /* "parse.pyx":75
  *                         swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)
  *                         lwrite.append([curid, id])
  *                         id = increment(id)             # <<<<<<<<<<<<<<
  *                     # Anything else is somehting like javascript or php,
  *                     # which is not accessed by a search engine
  */
-                        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_increment); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_increment); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_1);
-                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L22_error)
+                        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_3);
                         __pyx_t_14 = NULL;
                         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -3417,13 +3378,13 @@ if (!__Pyx_RefNanny) {
                         __pyx_t_18 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_14, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3);
                         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                        if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 76, __pyx_L22_error)
+                        if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 75, __pyx_L22_error)
                         __Pyx_GOTREF(__pyx_t_18);
                         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_18) < 0) __PYX_ERR(0, 76, __pyx_L22_error)
+                        if (PyDict_SetItem(__pyx_d, __pyx_n_s_id, __pyx_t_18) < 0) __PYX_ERR(0, 75, __pyx_L22_error)
                         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                        /* "parse.pyx":72
+                        /* "parse.pyx":71
  *                         lwrite.append([curid, id])
  *                         id = increment(id)
  *                     elif l[0] == "/":             # <<<<<<<<<<<<<<
@@ -3433,7 +3394,7 @@ if (!__Pyx_RefNanny) {
                       }
                       __pyx_L33:;
 
-                      /* "parse.pyx":57
+                      /* "parse.pyx":56
  *                 swrite = []
  *                 lwrite = []
  *                 for link in linkbook:             # <<<<<<<<<<<<<<
@@ -3443,19 +3404,19 @@ if (!__Pyx_RefNanny) {
                     }
                     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-                    /* "parse.pyx":79
+                    /* "parse.pyx":78
  *                     # Anything else is somehting like javascript or php,
  *                     # which is not accessed by a search engine
  *                 sites.writerows(swrite)             # <<<<<<<<<<<<<<
  *                 links.writerows(lwrite)
  * 
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_sites); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 79, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_sites); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 78, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_18);
-                    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_writerows); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_writerows); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_swrite); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 79, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_swrite); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 78, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_18);
                     __pyx_t_3 = NULL;
                     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -3470,24 +3431,24 @@ if (!__Pyx_RefNanny) {
                     __pyx_t_10 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_t_18) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_18);
                     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L22_error)
+                    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 78, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_10);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-                    /* "parse.pyx":80
+                    /* "parse.pyx":79
  *                     # which is not accessed by a search engine
  *                 sites.writerows(swrite)
  *                 links.writerows(lwrite)             # <<<<<<<<<<<<<<
  * 
  *             except:
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_links); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_links); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_writerows); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 80, __pyx_L22_error)
+                    __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_writerows); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 79, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_18);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L22_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_lwrite); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __pyx_t_3 = NULL;
                     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_18))) {
@@ -3502,12 +3463,12 @@ if (!__Pyx_RefNanny) {
                     __pyx_t_10 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_18, __pyx_t_3, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_18, __pyx_t_1);
                     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 80, __pyx_L22_error)
+                    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L22_error)
                     __Pyx_GOTREF(__pyx_t_10);
                     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
                     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-                    /* "parse.pyx":50
+                    /* "parse.pyx":49
  *             curid = id
  *             id = increment(id)
  *             try:             # <<<<<<<<<<<<<<
@@ -3527,7 +3488,7 @@ if (!__Pyx_RefNanny) {
                   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
                   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                  /* "parse.pyx":82
+                  /* "parse.pyx":81
  *                 links.writerows(lwrite)
  * 
  *             except:             # <<<<<<<<<<<<<<
@@ -3536,26 +3497,26 @@ if (!__Pyx_RefNanny) {
  */
                   /*except:*/ {
                     __Pyx_AddTraceback("parse", __pyx_clineno, __pyx_lineno, __pyx_filename);
-                    if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_18, &__pyx_t_1) < 0) __PYX_ERR(0, 82, __pyx_L24_except_error)
+                    if (__Pyx_GetException(&__pyx_t_10, &__pyx_t_18, &__pyx_t_1) < 0) __PYX_ERR(0, 81, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_10);
                     __Pyx_GOTREF(__pyx_t_18);
                     __Pyx_GOTREF(__pyx_t_1);
 
-                    /* "parse.pyx":84
+                    /* "parse.pyx":83
  *             except:
  *                 # site does not have HTML Metadata (no title, no links)
  *                 sites.writerow([url, ""])             # <<<<<<<<<<<<<<
  *             done += 1
  *             if done % 1000 == 0:
  */
-                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_sites); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 84, __pyx_L24_except_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_sites); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 83, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_14);
-                    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_writerow); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L24_except_error)
+                    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_writerow); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_url); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 84, __pyx_L24_except_error)
+                    __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_url); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 83, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_14);
-                    __pyx_t_22 = PyList_New(2); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 84, __pyx_L24_except_error)
+                    __pyx_t_22 = PyList_New(2); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 83, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_22);
                     __Pyx_GIVEREF(__pyx_t_14);
                     PyList_SET_ITEM(__pyx_t_22, 0, __pyx_t_14);
@@ -3576,7 +3537,7 @@ if (!__Pyx_RefNanny) {
                     __pyx_t_3 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_14, __pyx_t_22) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_22);
                     __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
                     __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L24_except_error)
+                    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L24_except_error)
                     __Pyx_GOTREF(__pyx_t_3);
                     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3587,7 +3548,7 @@ if (!__Pyx_RefNanny) {
                   }
                   __pyx_L24_except_error:;
 
-                  /* "parse.pyx":50
+                  /* "parse.pyx":49
  *             curid = id
  *             id = increment(id)
  *             try:             # <<<<<<<<<<<<<<
@@ -3607,59 +3568,59 @@ if (!__Pyx_RefNanny) {
                   __pyx_L29_try_end:;
                 }
 
-                /* "parse.pyx":85
+                /* "parse.pyx":84
  *                 # site does not have HTML Metadata (no title, no links)
  *                 sites.writerow([url, ""])
  *             done += 1             # <<<<<<<<<<<<<<
  *             if done % 1000 == 0:
  *                 print(str(done) + " sites loaded")
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_done); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_done); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_18 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 85, __pyx_L14_error)
+                __pyx_t_18 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 84, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_18);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                if (PyDict_SetItem(__pyx_d, __pyx_n_s_done, __pyx_t_18) < 0) __PYX_ERR(0, 85, __pyx_L14_error)
+                if (PyDict_SetItem(__pyx_d, __pyx_n_s_done, __pyx_t_18) < 0) __PYX_ERR(0, 84, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                /* "parse.pyx":86
+                /* "parse.pyx":85
  *                 sites.writerow([url, ""])
  *             done += 1
  *             if done % 1000 == 0:             # <<<<<<<<<<<<<<
  *                 print(str(done) + " sites loaded")
  *             for i in range(JUMP):
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_done); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 86, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_done); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 85, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_18);
-                __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_t_18, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L14_error)
+                __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_t_18, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                __pyx_t_18 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 86, __pyx_L14_error)
+                __pyx_t_18 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 85, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_18);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_19 = __Pyx_PyObject_IsTrue(__pyx_t_18); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 86, __pyx_L14_error)
+                __pyx_t_19 = __Pyx_PyObject_IsTrue(__pyx_t_18); if (unlikely(__pyx_t_19 < 0)) __PYX_ERR(0, 85, __pyx_L14_error)
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
                 if (__pyx_t_19) {
 
-                  /* "parse.pyx":87
+                  /* "parse.pyx":86
  *             done += 1
  *             if done % 1000 == 0:
  *                 print(str(done) + " sites loaded")             # <<<<<<<<<<<<<<
  *             for i in range(JUMP):
  *                 f.__next__()
  */
-                  __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_done); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 87, __pyx_L14_error)
+                  __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_done); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 86, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_18);
-                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L14_error)
+                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_1);
                   __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-                  __pyx_t_18 = PyNumber_Add(__pyx_t_1, __pyx_kp_s_sites_loaded); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 87, __pyx_L14_error)
+                  __pyx_t_18 = PyNumber_Add(__pyx_t_1, __pyx_kp_s_sites_loaded); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 86, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_18);
                   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                  if (__Pyx_PrintOne(0, __pyx_t_18) < 0) __PYX_ERR(0, 87, __pyx_L14_error)
+                  if (__Pyx_PrintOne(0, __pyx_t_18) < 0) __PYX_ERR(0, 86, __pyx_L14_error)
                   __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-                  /* "parse.pyx":86
+                  /* "parse.pyx":85
  *                 sites.writerow([url, ""])
  *             done += 1
  *             if done % 1000 == 0:             # <<<<<<<<<<<<<<
@@ -3668,25 +3629,25 @@ if (!__Pyx_RefNanny) {
  */
                 }
 
-                /* "parse.pyx":88
+                /* "parse.pyx":87
  *             if done % 1000 == 0:
  *                 print(str(done) + " sites loaded")
  *             for i in range(JUMP):             # <<<<<<<<<<<<<<
  *                 f.__next__()
  *     except:
  */
-                __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_JUMP); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 88, __pyx_L14_error)
+                __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_JUMP); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 87, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_18);
-                __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L14_error)
+                __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L14_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
                 if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
                   __pyx_t_18 = __pyx_t_1; __Pyx_INCREF(__pyx_t_18); __pyx_t_8 = 0;
                   __pyx_t_9 = NULL;
                 } else {
-                  __pyx_t_8 = -1; __pyx_t_18 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 88, __pyx_L14_error)
+                  __pyx_t_8 = -1; __pyx_t_18 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 87, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_18);
-                  __pyx_t_9 = Py_TYPE(__pyx_t_18)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 88, __pyx_L14_error)
+                  __pyx_t_9 = Py_TYPE(__pyx_t_18)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 87, __pyx_L14_error)
                 }
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                 for (;;) {
@@ -3694,17 +3655,17 @@ if (!__Pyx_RefNanny) {
                     if (likely(PyList_CheckExact(__pyx_t_18))) {
                       if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_18)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_18, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 88, __pyx_L14_error)
+                      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_18, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 87, __pyx_L14_error)
                       #else
-                      __pyx_t_1 = PySequence_ITEM(__pyx_t_18, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L14_error)
+                      __pyx_t_1 = PySequence_ITEM(__pyx_t_18, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L14_error)
                       __Pyx_GOTREF(__pyx_t_1);
                       #endif
                     } else {
                       if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_18)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_18, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 88, __pyx_L14_error)
+                      __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_18, __pyx_t_8); __Pyx_INCREF(__pyx_t_1); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 87, __pyx_L14_error)
                       #else
-                      __pyx_t_1 = PySequence_ITEM(__pyx_t_18, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L14_error)
+                      __pyx_t_1 = PySequence_ITEM(__pyx_t_18, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L14_error)
                       __Pyx_GOTREF(__pyx_t_1);
                       #endif
                     }
@@ -3714,25 +3675,25 @@ if (!__Pyx_RefNanny) {
                       PyObject* exc_type = PyErr_Occurred();
                       if (exc_type) {
                         if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                        else __PYX_ERR(0, 88, __pyx_L14_error)
+                        else __PYX_ERR(0, 87, __pyx_L14_error)
                       }
                       break;
                     }
                     __Pyx_GOTREF(__pyx_t_1);
                   }
-                  if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, __pyx_t_1) < 0) __PYX_ERR(0, 88, __pyx_L14_error)
+                  if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, __pyx_t_1) < 0) __PYX_ERR(0, 87, __pyx_L14_error)
                   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                  /* "parse.pyx":89
+                  /* "parse.pyx":88
  *                 print(str(done) + " sites loaded")
  *             for i in range(JUMP):
  *                 f.__next__()             # <<<<<<<<<<<<<<
  *     except:
  *         #file ended
  */
-                  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_f); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 89, __pyx_L14_error)
+                  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_f); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 88, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_10);
-                  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_next); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L14_error)
+                  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_next); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_3);
                   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
                   __pyx_t_10 = NULL;
@@ -3747,12 +3708,12 @@ if (!__Pyx_RefNanny) {
                   }
                   __pyx_t_1 = (__pyx_t_10) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_10) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
                   __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-                  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L14_error)
+                  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L14_error)
                   __Pyx_GOTREF(__pyx_t_1);
                   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                  /* "parse.pyx":88
+                  /* "parse.pyx":87
  *             if done % 1000 == 0:
  *                 print(str(done) + " sites loaded")
  *             for i in range(JUMP):             # <<<<<<<<<<<<<<
@@ -3763,8 +3724,8 @@ if (!__Pyx_RefNanny) {
                 __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
               }
 
-              /* "parse.pyx":44
- *         f.readline()
+              /* "parse.pyx":43
+ *         f.__next__()
  * 
  *     try:             # <<<<<<<<<<<<<<
  *         while True:
@@ -3784,7 +3745,7 @@ if (!__Pyx_RefNanny) {
             __Pyx_XDECREF(__pyx_t_22); __pyx_t_22 = 0;
             __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-            /* "parse.pyx":90
+            /* "parse.pyx":89
  *             for i in range(JUMP):
  *                 f.__next__()
  *     except:             # <<<<<<<<<<<<<<
@@ -3803,7 +3764,7 @@ if (!__Pyx_RefNanny) {
             __pyx_L19_try_end:;
           }
 
-          /* "parse.pyx":39
+          /* "parse.pyx":38
  * done, id = 0, " "
  * 
  * with open("TestData.wat", encoding="utf-8") as f:             # <<<<<<<<<<<<<<
@@ -3825,20 +3786,20 @@ if (!__Pyx_RefNanny) {
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("parse", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_18, &__pyx_t_1, &__pyx_t_3) < 0) __PYX_ERR(0, 39, __pyx_L8_except_error)
+          if (__Pyx_GetException(&__pyx_t_18, &__pyx_t_1, &__pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L8_except_error)
           __Pyx_GOTREF(__pyx_t_18);
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_18, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 39, __pyx_L8_except_error)
+          __pyx_t_10 = PyTuple_Pack(3, __pyx_t_18, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 38, __pyx_L8_except_error)
           __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, NULL);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 39, __pyx_L8_except_error)
+          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 38, __pyx_L8_except_error)
           __Pyx_GOTREF(__pyx_t_13);
           __pyx_t_19 = __Pyx_PyObject_IsTrue(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          if (__pyx_t_19 < 0) __PYX_ERR(0, 39, __pyx_L8_except_error)
+          if (__pyx_t_19 < 0) __PYX_ERR(0, 38, __pyx_L8_except_error)
           __pyx_t_20 = ((!(__pyx_t_19 != 0)) != 0);
           if (__pyx_t_20) {
             __Pyx_GIVEREF(__pyx_t_18);
@@ -3846,7 +3807,7 @@ if (!__Pyx_RefNanny) {
             __Pyx_XGIVEREF(__pyx_t_3);
             __Pyx_ErrRestoreWithState(__pyx_t_18, __pyx_t_1, __pyx_t_3);
             __pyx_t_18 = 0; __pyx_t_1 = 0; __pyx_t_3 = 0; 
-            __PYX_ERR(0, 39, __pyx_L8_except_error)
+            __PYX_ERR(0, 38, __pyx_L8_except_error)
           }
           __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3872,7 +3833,7 @@ if (!__Pyx_RefNanny) {
         if (__pyx_t_4) {
           __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__13, NULL);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 39, __pyx_L1_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
@@ -3887,34 +3848,15 @@ if (!__Pyx_RefNanny) {
     __pyx_L42:;
   }
 
-  /* "parse.pyx":93
- *         #file ended
- *         pass
- * print(time() - start)             # <<<<<<<<<<<<<<
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_18 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_18);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_18) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-
   /* "parse.pyx":1
  * from json import loads             # <<<<<<<<<<<<<<
  * from csv import writer
- * from time import time
+ * import cython
  */
-  __pyx_t_18 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_18);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_18) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_3) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /*--- Wrapped vars code ---*/
 
