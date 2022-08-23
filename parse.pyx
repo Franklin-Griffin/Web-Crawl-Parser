@@ -1,5 +1,14 @@
 from json import loads
 from csv import writer
+from time import time
+import cython
+STARTING_ROW: cython.int
+JUMP: cython.int
+done: cython.int
+i: cython.int
+
+STARTING_ROW, JUMP = 44, 32
+start = time()
 
 # ASCII ID for less memory, from 32-126, skipping 44 (comma)
 # uses much less memory
@@ -9,7 +18,7 @@ def increment(id):
         x = id[i]
         if x != "~":
             return "".join([id[:i], ("-" if x == "+" else chr(ord(x) + 1)), id[i+1:]])
-        id = "".join([id[:i], (" "), id[i+1:]])
+        id = "".join([id[:i], " ", id[i+1:]])
     # new character
     return "".join([" ", id])
 
@@ -29,7 +38,7 @@ done, id = 0, " "
 
 with open("TestData.wat", encoding="utf-8") as f:
     # set buffer, skip header
-    for i in range(44):
+    for i in range(STARTING_ROW):
         f.readline()
 
     try:
@@ -43,6 +52,8 @@ with open("TestData.wat", encoding="utf-8") as f:
                 linkbook = data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Links']
                 sites.writerow([id, url, title])
                 id = increment(id)
+                swrite = []
+                lwrite = []
                 for link in linkbook:
                     l = "" # the link
                     if "url" in link:
@@ -55,24 +66,28 @@ with open("TestData.wat", encoding="utf-8") as f:
                         # this is a link to a site or image
                         # we need to make sure it gets included
                         # if it is a duplicate, that's ok, it'll get filtered
-                        sites.writerow([id, l, ""])
-                        links.writerow([curid, id])
+                        swrite.append([id, l, ""])
+                        lwrite.append([curid, id])
                         id = increment(id)
                     elif l[0] == "/":
                         # a directory (ie /images)
-                        sites.writerow([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)
-                        links.writerow([curid, id])
+                        swrite.append([id, "".join([url if url[-1] != "/" else url[:-1], l]) , ""]) # also must be included, just in case (think stack overflow)
+                        lwrite.append([curid, id])
                         id = increment(id)
                     # Anything else is somehting like javascript or php,
                     # which is not accessed by a search engine
+                sites.writerows(swrite)
+                links.writerows(lwrite)
 
             except:
                 # site does not have HTML Metadata (no title, no links)
                 sites.writerow([url, ""])
+            done += 1
             if done % 1000 == 0:
                 print(str(done) + " sites loaded")
-            for i in range(32):
-                f.readline()
+            for i in range(JUMP):
+                f.__next__()
     except:
         #file ended
         pass
+print(time() - start)
