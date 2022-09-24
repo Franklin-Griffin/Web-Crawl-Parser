@@ -25,9 +25,11 @@ def main():
             while True:
                 data = loads(f.readline())['Envelope']
                 url = q(data['WARC-Header-Metadata']['WARC-Target-URI'])
+                rootAppended = False
                 try:
                     title = q(data['Payload-Metadata']['HTTP-Response-Metadata']['HTML-Metadata']['Head']['Title'])
                     sites.write(",".join([id, url, title]) + "\n")
+                    rootAppended = True
                     curid = id
                     id = increment(id)
 
@@ -48,21 +50,24 @@ def main():
                             swrite.append(",".join([id, "".join([url[:-1] if url[-2] != "/" else url[:-2], q(l)[1:]])]) + ",\n")
                             # also must be included, just in case (think stack overflow)
                             lwrite.append(",".join([curid, id]) + "\n")
+                            id = increment(id)
                         elif len(l) >= 8 and (l[:7] == "http://" or l[:8] == "https://"):
                             # this is a link to a site or image
                             # we need to make sure it gets included
                             # if it is a duplicate, that's ok, it'll get filtered
                             swrite.append(",".join([id, q(l)]) + ",\n")
                             lwrite.append(",".join([curid, id]) + "\n")
+                            id = increment(id)
                         # Anything else is somehting like javascript or php,
                         # which is not accessed by a search engine
                     sites.writelines(swrite)
                     links.writelines(lwrite)
 
                 except:
-                    # site does not have HTML Metadata (no title, no links)
-                    sites.write(",".join([id, url]) + ",\n")
-                    id = increment(id)
+                    # site does not have HTML Metadata (no title and/or no links)
+                    if not rootAppended:
+                        sites.write(",".join([id, url]) + ",\n")
+                        id = increment(id)
                 for i in range(JUMP):
                     next(f)
         except StopIteration:
