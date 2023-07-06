@@ -1,4 +1,4 @@
-# Parse Crawl
+# Web-Crawl-Parser
 A program that takes a .wat file as input and outputs a sites.csv file for nodes, and a links.csv file for relationships.
 
 The csv files can then be imported to Neo4j.
